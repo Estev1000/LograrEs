@@ -509,14 +509,16 @@ function populateSelects() {
         }
     });
 
-    // Llenar selector de profesionales para turnos
-    const doctorSelect = document.getElementById('a-doctor');
-    if (doctorSelect) {
-        doctorSelect.innerHTML = '<option value="">Seleccione Profesional</option>';
-        doctors.forEach(d => {
-            doctorSelect.innerHTML += `<option value="${d.id}">${d.name} ${d.lastname} - ${d.specialty}</option>`;
-        });
-    }
+    // Llenar selector de profesionales para turnos y historial
+    ['a-doctor', 'h-professional'].forEach(id => {
+        const doctorSelect = document.getElementById(id);
+        if (doctorSelect) {
+            doctorSelect.innerHTML = '<option value="">Seleccione Profesional</option>';
+            doctors.forEach(d => {
+                doctorSelect.innerHTML += `<option value="${d.id}">${d.name} ${d.lastname} - ${d.specialty}</option>`;
+            });
+        }
+    });
 
     if (typeof window.filterAppointmentPatients === 'function') {
         window.filterAppointmentPatients();
@@ -981,6 +983,7 @@ if (historyForm) {
 
         const historyData = {
             patientId: document.getElementById('h-patient').value,
+            professionalId: document.getElementById('h-professional').value,
             date: document.getElementById('h-date').value,
             diagnosis: document.getElementById('h-diagnosis').value,
             treatment: document.getElementById('h-treatment').value,
@@ -1017,6 +1020,7 @@ window.editHistory = function (id) {
     if (!h) return;
     document.getElementById('h-id').value = h.id;
     document.getElementById('h-patient').value = h.patientId;
+    document.getElementById('h-professional').value = h.professionalId || '';
     document.getElementById('h-date').value = h.date;
     document.getElementById('h-diagnosis').value = h.diagnosis;
     document.getElementById('h-treatment').value = h.treatment;
@@ -1042,6 +1046,7 @@ window.editHistory = function (id) {
 window.searchHistory = function () {
     const q = document.getElementById('history-search').value.toLowerCase().trim();
     const patients = Storage.get('patients');
+    const doctors = Storage.get('doctors');
 
     const history = q ? Storage.get('history').filter(h => {
         const p = patients.find(pat => pat.id == h.patientId) || { name: '', lastname: '' };
@@ -1055,11 +1060,13 @@ window.searchHistory = function () {
 
     history.forEach(h => {
         const p = patients.find(pat => pat.id == h.patientId) || { name: 'Desconocido', lastname: '' };
+        const d = doctors.find(doc => doc.id == h.professionalId) || { name: 'Sin asignar', lastname: '' };
         const count = (h.photosBefore ? h.photosBefore.filter(x => x).length : 0) + (h.photosAfter ? h.photosAfter.filter(x => x).length : 0);
         tbody.innerHTML += `
             <tr>
                 <td>${h.date}</td>
                 <td>${p.name} ${p.lastname}</td>
+                <td>${d.name} ${d.lastname}</td>
                 <td>${h.diagnosis.substring(0, 20)}...</td>
                 <td>${h.treatment.substring(0, 20)}...</td>
                 <td>${h.notes ? h.notes.substring(0, 15) + '...' : ''}</td>
