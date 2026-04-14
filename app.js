@@ -1194,6 +1194,64 @@ window.filterHistoryPatients = function () {
     }
 };
 
+// --- Buscador de Profesionales para Historial ---
+function _renderHistoryProfessionalResults(doctors) {
+    const results = document.getElementById('h-professional-results');
+    if (!results) return;
+
+    if (!doctors || doctors.length === 0) {
+        results.innerHTML = '';
+        results.style.display = 'none';
+        return;
+    }
+
+    const max = 8;
+    const items = doctors.slice(0, max);
+    results.innerHTML = items.map(d => {
+        const specialty = d.specialty ? ` - ${_escapeHtml(d.specialty)}` : '';
+        const label = `${_escapeHtml(d.name || '')} ${_escapeHtml(d.lastname || '')}${specialty}`.trim();
+        return `<div class="select-result-item" onclick="selectHistoryProfessional('${_escapeHtml(d.id)}')">${label}</div>`;
+    }).join('');
+    results.style.display = 'block';
+}
+
+window.selectHistoryProfessional = function (id) {
+    const sel = document.getElementById('h-professional');
+    if (sel) sel.value = id;
+    const results = document.getElementById('h-professional-results');
+    if (results) { results.innerHTML = ''; results.style.display = 'none'; }
+};
+
+window.filterHistoryProfessionals = function () {
+    const input = document.getElementById('h-professional-search');
+    const select = document.getElementById('h-professional');
+    if (!select) return;
+
+    const currentValue = select.value;
+    const q = (input ? input.value : '').trim().toLowerCase();
+
+    const doctors = Storage.get('doctors');
+    const filtered = q
+        ? doctors.filter(d =>
+            (d.name && d.name.toLowerCase().includes(q)) ||
+            (d.lastname && d.lastname.toLowerCase().includes(q)) ||
+            (d.specialty && d.specialty.toLowerCase().includes(q))
+        )
+        : doctors;
+
+    _renderHistoryProfessionalResults(q ? filtered : []);
+
+    select.innerHTML = '<option value="">Seleccione Profesional</option>';
+    filtered.forEach(d => {
+        const specialty = d.specialty ? ` - ${d.specialty}` : '';
+        select.innerHTML += `<option value="${d.id}">${d.name} ${d.lastname}${specialty}</option>`;
+    });
+
+    if (currentValue && Array.from(select.options).some(o => o.value === currentValue)) {
+        select.value = currentValue;
+    }
+};
+
 // --- Export/Import ---
 window.exportClinicData = function () {
     const data = {

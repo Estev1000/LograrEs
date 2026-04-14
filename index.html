@@ -430,6 +430,8 @@
                 </div>
                 <div class="form-group">
                     <label>Profesional que ejecutó el tratamiento</label>
+                    <input type="text" id="h-professional-search" placeholder="Buscar por nombre, apellido o especialidad..." oninput="filterHistoryProfessionals()">
+                    <div id="h-professional-results" class="select-results" style="display:none;"></div>
                     <select id="h-professional" required>
                         <!-- Populated by JS -->
                     </select>
