@@ -1388,3 +1388,79 @@ window.deleteDoctor = function (id) {
         alert('Médico eliminado correctamente');
     }
 };
+
+// --- Excel Export/Import ---
+window.exportToExcel = function () {
+    try {
+        const patients = Storage.get('patients');
+        const doctors = Storage.get('doctors');
+        const appointments = Storage.get('appointments');
+        const history = Storage.get('history');
+
+        // Create a new workbook
+        const wb = XLSX.utils.book_new();
+
+        // Convert each data array to a worksheet
+        const wsPatients = XLSX.utils.json_to_sheet(patients);
+        XLSX.utils.book_append_sheet(wb, wsPatients, "Pacientes");
+
+        const wsDoctors = XLSX.utils.json_to_sheet(doctors);
+        XLSX.utils.book_append_sheet(wb, wsDoctors, "Profesionales");
+
+        const wsAppointments = XLSX.utils.json_to_sheet(appointments);
+        XLSX.utils.book_append_sheet(wb, wsAppointments, "Turnos");
+
+        const wsHistory = XLSX.utils.json_to_sheet(history);
+        XLSX.utils.book_append_sheet(wb, wsHistory, "Historial");
+
+        // Download the file
+        XLSX.writeFile(wb, `LograrES_Respaldo_${new Date().toISOString().slice(0, 10)}.xlsx`);
+        alert('✅ Datos exportados a Excel correctamente');
+    } catch (error) {
+        console.error("Error al exportar a Excel:", error);
+        alert('❌ Error al exportar a Excel. Verifique la consola para más detalles.');
+    }
+};
+
+window.importFromExcel = function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            if (confirm('⚠️ ATENCIÓN: Esta acción reemplazará TODOS los datos actuales con los del archivo Excel. ¿Desea continuar?')) {
+                
+                // Process worksheets
+                if (workbook.SheetNames.includes("Pacientes")) {
+                    const patients = XLSX.utils.sheet_to_json(workbook.Sheets["Pacientes"]);
+                    Storage.set('patients', patients);
+                }
+                if (workbook.SheetNames.includes("Profesionales")) {
+                    const doctors = XLSX.utils.sheet_to_json(workbook.Sheets["Profesionales"]);
+                    Storage.set('doctors', doctors);
+                }
+                if (workbook.SheetNames.includes("Turnos")) {
+                    const appointments = XLSX.utils.sheet_to_json(workbook.Sheets["Turnos"]);
+                    Storage.set('appointments', appointments);
+                }
+                if (workbook.SheetNames.includes("Historial")) {
+                    const history = XLSX.utils.sheet_to_json(workbook.Sheets["Historial"]);
+                    Storage.set('history', history);
+                }
+
+                alert('✅ Datos importados correctamente desde Excel. La página se recargará.');
+                location.reload();
+            }
+        } catch (error) {
+            alert('❌ Error al leer el archivo Excel. Asegúrate de que es un archivo .xlsx válido.');
+            console.error(error);
+        }
+    };
+    reader.readAsArrayBuffer(file);
+    // Reset value to allow re-importing the same file
+    event.target.value = '';
+};

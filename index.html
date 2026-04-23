@@ -273,7 +273,7 @@
                     </div>
                 </section>
 
-                <!-- Settings Section -->
+    <!-- Settings Section -->
                 <section id="settings" class="view-section">
                     <div class="section-header">
                         <h2>Configuración y Datos</h2>
@@ -281,27 +281,41 @@
                     <div class="table-container">
                         <div
                             style="max-width: 600px; margin: 30px auto; padding: 40px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
-                            <i class='bx bxs-data' style="font-size: 4rem; color: #3498db; margin-bottom: 20px;"></i>
-                            <h3 style="margin-bottom: 10px; color: #2c3e50;">Copia de Seguridad</h3>
+                            <i class='bx bxs-file-export' style="font-size: 4rem; color: #27ae60; margin-bottom: 20px;"></i>
+                            <h3 style="margin-bottom: 10px; color: #2c3e50;">Copia de Seguridad Excel</h3>
                             <p style="color: #7f8c8d; margin-bottom: 30px;">
-                                Exporta tus datos periódicamente para evitar pérdidas o importa una copia de seguridad
-                                existente.
+                                Exporta e importa tus datos en formato Excel (.xlsx). Cada pestaña del archivo corresponderá a una sección (Pacientes, Profesionales, Turnos, Historial).
                             </p>
 
                             <div style="display: grid; gap: 15px;">
-                                <button onclick="exportClinicData()" class="btn-secondary"
-                                    style="width: 100%; padding: 15px; font-size: 1.1rem; border: 2px solid #3498db; color: #3498db; background: white;">
-                                    <i class='bx bx-export'></i> Exportar Todos los Datos
+                                <button onclick="exportToExcel()" class="btn-secondary"
+                                    style="width: 100%; padding: 15px; font-size: 1.1rem; border: 2px solid #27ae60; color: #27ae60; background: white; cursor: pointer; transition: all 0.3s;">
+                                    <i class='bx bxs-spreadsheet'></i> Exportar a Excel
                                 </button>
 
-                                <button onclick="document.getElementById('import-file').click()" class="btn-primary"
-                                    style="width: 100%; padding: 15px; font-size: 1.1rem;">
-                                    <i class='bx bx-import'></i> Importar Datos
+                                <button onclick="document.getElementById('import-excel-file').click()" class="btn-primary"
+                                    style="width: 100%; padding: 15px; font-size: 1.1rem; background: #27ae60; border-color: #27ae60; cursor: pointer;">
+                                    <i class='bx bx-upload'></i> Importar desde Excel
                                 </button>
+                                
+                                <input type="file" id="import-excel-file" accept=".xlsx, .xls" style="display: none;"
+                                    onchange="importFromExcel(event)">
+                                
+                                <hr style="margin: 10px 0; border: none; border-top: 1px solid #eee;">
+                                
+                                <div style="display: flex; gap: 10px;">
+                                    <button onclick="exportClinicData()" class="btn-secondary"
+                                        style="flex: 1; padding: 10px; font-size: 0.9rem;">
+                                        <i class='bx bx-export'></i> JSON Export
+                                    </button>
+                                    <button onclick="document.getElementById('import-file').click()" class="btn-secondary"
+                                        style="flex: 1; padding: 10px; font-size: 0.9rem;">
+                                        <i class='bx bx-import'></i> JSON Import
+                                    </button>
+                                </div>
+                                <input type="file" id="import-file" accept=".json" style="display: none;"
+                                    onchange="importClinicData(event)">
                             </div>
-
-                            <input type="file" id="import-file" accept=".json" style="display: none;"
-                                onchange="importClinicData(event)">
                         </div>
                     </div>
                 </section>
@@ -531,6 +545,8 @@
         </div>
     </div>
 
+    <!-- Excel Library -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="app.js?v=2"></script>
 </body>
 
