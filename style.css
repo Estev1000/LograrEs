@@ -471,118 +471,6 @@ body {
     word-break: break-word;
 }
 
-/* Visor de Fotos Premium */
-.modal-viewer {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 200;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-viewer.active {
-    display: flex;
-}
-
-.close-viewer {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 210;
-}
-
-.viewer-content {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.compare-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: center;
-}
-
-.compare-box {
-    position: relative;
-    background: #111;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.compare-box img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.badget-before,
-.badget-after {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-}
-
-.badget-before {
-    background: #e74c3c;
-}
-
-.badget-after {
-    background: #27ae60;
-}
-
-.viewer-controls {
-    text-align: center;
-    color: white;
-}
-
-.mini-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-    overflow-x: auto;
-    padding: 10px;
-}
-
-.mini-gallery img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: 0.3s;
-}
-
-.mini-gallery img:hover,
-.mini-gallery img.active {
-    border-color: var(--primary-color);
-    transform: scale(1.1);
-}
-
 @media (max-width: 768px) {
     body {
         overflow: auto;
@@ -628,14 +516,6 @@ body {
 
     body.sidebar-open .sidebar-overlay {
         display: block;
-    }
-
-    .compare-container {
-        grid-template-columns: 1fr;
-    }
-
-    .compare-box {
-        height: 35vh;
     }
 }
 

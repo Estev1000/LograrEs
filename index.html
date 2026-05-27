@@ -357,11 +357,9 @@
                     <input type="email" id="p-email">
                 </div>
                 <div class="form-group">
-                    <label>¿Tiene Diabetes?</label>
-                    <select id="p-diabetes">
-                        <option value="no">No</option>
-                        <option value="si">Sí</option>
-                    </select>
+                    <label>Documentación General (PDF)</label>
+                    <input type="file" id="p-documentacion" accept=".pdf">
+                    <div id="p-doc-preview" style="margin-top:5px; font-size:0.8rem; color:#555;"></div>
                 </div>
                 <button type="submit" class="btn-primary full-width">Guardar Paciente</button>
             </form>
@@ -469,84 +467,16 @@
                     <label>Observaciones</label>
                     <textarea id="h-notes" rows="2"></textarea>
                 </div>
-                <!-- Sistema de Fotos de Precisión -->
                 <div class="form-group">
-                    <label><i class='bx bx-camera'></i> Fotos del Tratamiento (Posiciones 1, 2 y 3)</label>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;">
-                        <!-- Columna ANTES -->
-                        <div>
-                            <p style="font-weight: bold; font-size: 0.8rem; color: #e74c3c; margin-bottom: 5px;">ESTADO
-                                ANTES</p>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 1</label>
-                                <input type="file" id="h-photo-before-1" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-b-1" style="margin-top: 5px;"></div>
-                            </div>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 2</label>
-                                <input type="file" id="h-photo-before-2" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-b-2" style="margin-top: 5px;"></div>
-                            </div>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 3</label>
-                                <input type="file" id="h-photo-before-3" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-b-3" style="margin-top: 5px;"></div>
-                            </div>
-                        </div>
-                        <!-- Columna DESPUÉS -->
-                        <div>
-                            <p style="font-weight: bold; font-size: 0.8rem; color: #27ae60; margin-bottom: 5px;">ESTADO
-                                DESPUÉS</p>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 1</label>
-                                <input type="file" id="h-photo-after-1" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-a-1" style="margin-top: 5px;"></div>
-                            </div>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 2</label>
-                                <input type="file" id="h-photo-after-2" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-a-2" style="margin-top: 5px;"></div>
-                            </div>
-                            <div class="photo-slot"
-                                style="margin-bottom: 10px; padding: 10px; border: 1px solid #eee; border-radius: 8px;">
-                                <label style="display: block; font-size: 0.75rem; color: #888;">Posición 3</label>
-                                <input type="file" id="h-photo-after-3" accept="image/*"
-                                    style="font-size: 0.8rem; width: 100%;">
-                                <div id="p-a-3" style="margin-top: 5px;"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <label><i class='bx bx-file'></i> Plan de Tratamiento (Word)</label>
+                    <input type="file" id="h-tratamiento" accept=".doc,.docx">
+                    <div id="h-tratamiento-preview" style="margin-top:5px; font-size:0.8rem; color:#555;"></div>
                 </div>
                 <button type="submit" class="btn-primary full-width">Guardar Historial</button>
             </form>
         </div>
     </div>
-    <!-- Visor de Fotos / Comparativa -->
-    <div id="photo-viewer" class="modal-viewer">
-        <span class="close-viewer" onclick="closeViewer()">&times;</span>
-        <div class="viewer-content">
-            <div id="scroll-gallery"
-                style="display: flex; flex-direction: column; gap: 40px; overflow-y: auto; max-height: 85vh; padding-right: 15px;">
-                <!-- Las comparaciones se inyectan aquí con scroll -->
-            </div>
-            <div class="viewer-controls" style="display: none;">
-                <div id="pair-selectors"
-                    style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
-                    <!-- Botones antiguos eliminados -->
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Excel Library -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
