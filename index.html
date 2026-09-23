@@ -255,6 +255,10 @@
                         <input type="text" id="history-search" placeholder="Buscar por ID, nombre o apellido..."
                             oninput="searchHistory()">
                         <button class="btn-secondary" onclick="searchHistory()">Buscar</button>
+                        <select id="history-order" onchange="searchHistory()" style="padding:10px; border-radius:8px; border:1px solid #ddd; font-size:14px;">
+                            <option value="desc">Más reciente primero</option>
+                            <option value="asc">Más antigua primero</option>
+                        </select>
                     </div>
                     <div class="table-container">
                         <table class="data-table">
