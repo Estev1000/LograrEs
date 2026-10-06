@@ -303,8 +303,7 @@
                                     <div id="storage-usage-bar" style="height: 100%; width: 0%; background: #27ae60; border-radius: 5px; transition: width 0.3s;"></div>
                                 </div>
                                 <p id="storage-usage-note" style="font-size: 0.78rem; color: #7f8c8d; margin-top: 8px; line-height: 1.5;">
-                                    Los datos se guardan dentro del navegador (límite 5 MB). Los archivos adjuntos en Word
-                            consumen un 37% más de su tamaño original.
+                                    Los archivos reales quedan guardados en la carpeta local de la PC. En el navegador solo se guarda la referencia del archivo para no saturarlo.
                                 </p>
                             </div>
 
@@ -496,15 +495,8 @@
     </div>
 
 
-    <!-- Excel Library (local, with CDN fallback) -->
-    <script src="vendor/xlsx.full.min.js"></script>
-    <script>
-        // Si la libreria local no se pudo cargar (sin internet, archivo movido, etc.),
-        // se intenta cargar desde el CDN como alternativa.
-        if (typeof XLSX === 'undefined') {
-            document.write('<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"><\/script>');
-        }
-    </script>
+    <!-- Excel Library -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="app.min.js?v=3"></script>
 </body>
 
