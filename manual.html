@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Uso - LograrES</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0d8abc;
+            --secondary-color: #2c3e50;
+            --accent-color: #1abc9c;
+            --background-color: #f4f7f6;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --border-color: #e0e0e0;
+            --radius: 12px;
+            --warning: #e67e22;
+            --danger: #e74c3c;
+            --success: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .manual-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .manual-header img {
+            max-height: 90px;
+            margin-bottom: 15px;
+        }
+
+        .manual-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .manual-header p {
+            opacity: .9;
+            font-size: 1.05rem;
+        }
+
+        .manual-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow, 0 4px 6px rgba(0, 0, 0, .05));
+            margin-bottom: 25px;
+            transition: all .3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            color: var(--secondary-color);
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+        }
+
+        .card h2 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            margin: 22px 0 10px;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+        }
+
+        .card ul,
+        .card ol {
+            margin: 0 0 14px 22px;
+        }
+
+        .card li {
+            margin-bottom: 7px;
+        }
+
+        .toc {
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .toc a {
+            display: block;
+            color: var(--secondary-color);
+            text-decoration: none;
+            padding: 6px 0;
+            break-inside: avoid;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+        }
+
+        .toc a i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px;
+            font-size: .97rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--secondary-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) td {
+            background: #f9fbfb;
+        }
+
+        .alert {
+            border-left: 5px solid;
+            background: #fff;
+            padding: 18px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .alert-warning {
+            border-color: var(--warning);
+            background: #fef6ee;
+            color: #7a4b12;
+        }
+
+        .alert-danger {
+            border-color: var(--danger);
+            background: #fdeeec;
+            color: #8a2b21;
+        }
+
+        .alert-success {
+            border-color: var(--success);
+            background: #eafaf1;
+            color: #1c6b41;
+        }
+
+        .alert-info {
+            border-color: var(--primary-color);
+            background: #eaf5fb;
+            color: #14506b;
+        }
+
+        .alert i {
+            margin-right: 6px;
+        }
+
+        code {
+            background: #eef3f5;
+            color: var(--secondary-color);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: .92em;
+            word-break: break-all;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            background: #f9fbfb;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .step-num {
+            flex: 0 0 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step-body h4 {
+            color: var(--secondary-color);
+            margin-bottom: 4px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .mini-card {
+            background: #f9fbfb;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .mini-card h4 {
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .mini-card h4 i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: .78rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .badge.red {
+            background: var(--danger);
+        }
+
+        .badge.green {
+            background: var(--success);
+        }
+
+        .quote {
+            border-left: 5px solid var(--accent-color);
+            background: #f0fbf8;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--secondary-color);
+            margin: 16px 0;
+        }
+
+        .manual-footer {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--secondary-color);
+            color: #cfd8dc;
+            font-size: .92rem;
+        }
+
+        .manual-footer a {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 640px) {
+            .toc {
+                columns: 1;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+
+            .manual-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="manual-header">
+        <img src="Logo%20de%20lograrEs.jpeg" alt="Logo LograrES">
+        <h1>Manual de Uso del Sistema</h1>
+        <p>LograrES — Gestión Clínica | SAS INTERDISCIPLINA</p>
+    </header>
+
+    <div class="manual-container">
+
+        <a class="back-link" href="index.html"><i class='bx bx-arrow-back'></i> Volver al sistema</a>
+
+        <!-- ÍNDICE -->
+        <section class="card" id="indice">
+            <h2><i class='bx bx-list-ul'></i> Índice del manual</h2>
+            <div class="toc">
+                <a href="#acceso"><i class='bx bx-log-in-circle'></i> 1. Acceso e interfaz general</a>
+                <a href="#dashboard"><i class='bx bxs-dashboard'></i> 2. Dashboard</a>
+                <a href="#pacientes"><i class='bx bxs-user-detail'></i> 3. Pacientes</a>
+                <a href="#profesionales"><i class='bx bxs-user-badge'></i> 4. Profesionales</a>
+                <a href="#turnos"><i class='bx bxs-calendar'></i> 5. Turnos</a>
+                <a href="#historial"><i class='bx bxs-folder-open'></i> 6. Historial clínico</a>
+                <a href="#configuracion"><i class='bx bxs-cog'></i> 7. Configuración y Datos</a>
+                <a href="#archivos"><i class='bx bx-file'></i> 8. Cómo se guardan los PDF y Word</a>
+                <a href="#copias"><i class='bx bxs-cloud-download'></i> 9. Copias de seguridad semanales</a>
+                <a href="#recomendaciones"><i class='bx bx-check-shield'></i> 10. Recomendaciones finales</a>
+            </div>
+        </section>
+
+        <!-- 1 -->
+        <section class="card" id="acceso">
+            <h2><i class='bx bx-log-in-circle'></i> 1. Acceso e interfaz general</h2>
+            <p>El sistema se abre directamente en el navegador (Google Chrome, Microsoft Edge o Firefox) haciendo doble clic sobre el archivo <code>index.html</code>. No necesita instalación, ni servidor, ni conexión a internet permanente.</p>
+            <div class="grid-2">
+                <div class="mini-card">
+                    <h4><i class='bx bx-menu'></i> Menú lateral</h4>
+                    <p>En la izquierda se encuentran las secciones: Dashboard, Pacientes, Profesionales, Turnos, Historial y Configuración. Un clic abre cada sección.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bx-bar-chart'></i> Barra superior</h4>
+                    <p>Muestra el título de la sección actual y el usuario que está operando el sistema.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bxl-whatsapp'></i> Soporte técnico</h4>
+                    <p>Botón verde del pie del menú: abre WhatsApp de soporte para consultas o incidencias.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bx-data'></i> Guardado automático</h4>
+                    <p>Todos los textos (pacientes, profesionales, turnos e historiales) se guardan solos en el navegador, sin límite de cantidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 -->
+        <section class="card" id="dashboard">
+            <h2><i class='bx bxs-dashboard'></i> 2. Dashboard</h2>
+            <p>Es la pantalla inicial y muestra el resumen general del día:</p>
+            <ul>
+                <li><strong>Total Pacientes:</strong> cantidad de pacientes registrados.</li>
+                <li><strong>Turnos Hoy:</strong> turnos agendados para la fecha actual.</li>
+                <li><strong>Historiales:</strong> cantidad de registros de historial clínico.</li>
+            </ul>
+            <div class="alert alert-info">
+                <strong><i class='bx bx-info-circle'></i> Dato rápido</strong>
+                Se actualiza automáticamente cada vez que se carga o modifica información en otra sección.
+            </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="card" id="pacientes">
+            <h2><i class='bx bxs-user-detail'></i> 3. Pacientes</h2>
+            <h3>Alta de un paciente</h3>
+            <ol>
+                <li>Ingresá a <strong>Pacientes</strong> y hacé clic en <strong>«Nuevo Paciente»</strong>.</li>
+                <li>Completá los datos: nombre, apellido, fecha de nacimiento, teléfono y email.</li>
+                <li>En <strong>Documentación General (PDF)</strong> podés elegir el archivo PDF desde tu PC: el sistema guarda <strong>solo el nombre</strong> del archivo como referencia (ver sección 8).</li>
+                <li>Hacé clic en <strong>Guardar</strong>. El paciente queda listo en la tabla.</li>
+            </ol>
+            <div class="alert alert-warning">
+                <strong><i class='bx bx-error'></i> La tabla no abre el PDF</strong>
+                En la lista de pacientes <u>no hay ícono para ver ni descargar el PDF</u>: el sistema solo muestra los datos del paciente. El nombre del archivo cargado aparece únicamente al abrir el formulario de edición (ícono 📄 junto al nombre del archivo). El PDF en sí permanece en la carpeta de tu PC (ver sección 8).
+            </div>
+            <h3>Editar, buscar o eliminar</h3>
+            <ul>
+                <li><strong>Buscar:</strong> escribí en el buscador por nombre, apellido o teléfono.</li>
+                <li><strong>Editar:</strong> clic en <strong>Editar</strong> de la fila; ahí se ve el nombre del PDF cargado.</li>
+                <li><strong>Eliminar:</strong> clic en <strong>Eliminar</strong> (no se puede deshacer).</li>
+                <li><strong>Abrir el PDF:</strong> mirá el nombre en el formulario, buscá ese archivo en tu PC y abrilo directamente desde la carpeta donde lo guardaste.</li>
+            </ul>
+        </section>
+
+        <!-- 4 -->
+        <section class="card" id="profesionales">
+            <h2><i class='bx bxs-user-badge'></i> 4. Profesionales</h2>
+            <p>Sección para dar de alta al equipo de trabajo de la clínica.</p>
+            <ol>
+                <li>Ingresá a <strong>Profesionales</strong> y hacé clic en <strong>«Nuevo Profesional»</strong>.</li>
+                <li>Completá nombre, apellido y especialidad.</li>
+                <li>Guardá. El profesional quedará disponible para asignarle turnos e historiales.</li>
+            </ol>
+            <div class="alert alert-info">
+                <strong><i class='bx bx-info-circle'></i> Importante</strong>
+                Borrar un profesional de esta lista no borra los turnos ni los historiales ya cargados a su nombre.
+            </div>
+        </section>
+
+        <!-- 5 -->
+        <section class="card" id="turnos">
+            <h2><i class='bx bxs-calendar'></i> 5. Turnos</h2>
+            <p>Los turnos se gestionan desde un calendario con tres vistas: <strong>Mes</strong>, <strong>Semana</strong> y <strong>Lista</strong>.</p>
+            <h3>Agendar un turno</h3>
+            <ol>
+                <li>Ingresá a <strong>Turnos</strong> y hacé clic en <strong>«Nuevo Turno»</strong>.</li>
+                <li>Elegí la fecha, la hora, el paciente y el profesional.</li>
+                <li>Completá el motivo u observaciones y guardá.</li>
+            </ol>
+            <ul>
+                <li>Usá las flechas <strong>‹ ›</strong> para avanzar o retroceder de mes, y el botón <strong>Hoy</strong> para volver a la fecha actual.</li>
+                <li>Haciendo clic sobre un turno ya cargado podés editarlo o eliminarlo.</li>
+            </ul>
+        </section>
+
+        <!-- 6 -->
+        <section class="card" id="historial">
+            <h2><i class='bx bxs-folder-open'></i> 6. Historial clínico</h2>
+            <p>Es el registro cronológico de cada atención del paciente.</p>
+            <h3>Cargar un registro</h3>
+            <ol>
+                <li>Ingresá a <strong>Historial</strong> y creá un nuevo registro.</li>
+                <li>Seleccioná el paciente y el profesional.</li>
+                <li>Completá fecha, diagnóstico, tratamiento, observaciones y evolución.</li>
+                <li>Adjuntá el <strong>Plan de Tratamiento (Word)</strong> si corresponde: se guarda <strong>solo el nombre</strong> del archivo (ver sección 8).</li>
+                <li>Guardá. El registro queda ordenado por fecha (se puede cambiar a «Más antigua primero» con el selector de orden).</li>
+            </ol>
+            <h3>Buscar y ver el plan de tratamiento</h3>
+            <ul>
+                <li><strong>Buscador:</strong> por ID, nombre o apellido del paciente.</li>
+                <li>En la tabla del historial <u>no hay ícono para abrir el Word</u>: solo se muestran los datos del registro.</li>
+                <li><strong>Nombre del Word:</strong> aparece al editar el registro (ícono 📄 junto al nombre del archivo). El archivo real sigue en la carpeta de tu PC (ver sección 8).</li>
+            </ul>
+        </section>
+
+        <!-- 7 -->
+        <section class="card" id="configuracion">
+            <h2><i class='bx bxs-cog'></i> 7. Configuración y Datos</h2>
+            <p>Desde <strong>Configuración</strong> se respaldan y se restauran los datos del sistema.</p>
+            <div class="grid-2">
+                <div class="mini-card">
+                    <h4><i class='bx bxs-spreadsheet'></i> Copia de Seguridad Excel</h4>
+                    <p>Exporta todos los datos a un archivo <code>.xlsx</code> con una pestaña por sección (Pacientes, Profesionales, Turnos, Historial) y permite importarlos de vuelta.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bx-export'></i> JSON Export / Import</h4>
+                    <p>Genera un archivo <code>.json</code> con toda la información del sistema y permite restaurarlo en la misma u otra computadora.</p>
+                </div>
+            </div>
+            <div class="alert alert-warning">
+                <strong><i class='bx bx-error'></i> Precaución</strong>
+                Antes de importar un archivo nuevo, exportá primero el respaldo actual: la importación reemplaza los datos que hay en el sistema.
+            </div>
+            <div class="alert alert-info">
+                <strong><i class='bx bx-bulb'></i> Dato importante</strong>
+                Los archivos Excel y JSON contienen <u>solo los textos y los nombres</u> de los adjuntos. Nunca guardan dentro el contenido real de los PDF ni de los Word.
+            </div>
+        </section>
+
+        <!-- 8: contenido del .md -->
+        <section class="card" id="archivos">
+            <h2><i class='bx bx-file'></i> 8. ¿Cómo se guardan los archivos PDF y Word?</h2>
+            <p><em>(Resumen oficial del archivo «Explicación de archivos PDF y Word.md»)</em></p>
+
+            <h3>Respuesta breve</h3>
+            <p>Cuando cargás un archivo <strong>PDF</strong> o <strong>Word</strong> en el historial clínico (o en documentación general), el sistema <strong>no sube ni almacena el archivo en internet</strong>. Lo único que se guarda en el sistema es <strong>el nombre del archivo</strong>. El archivo en sí <strong>sigue guardado en tu PC</strong>, en la carpeta donde vos lo dejaste.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>¿Se guarda en el sistema?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre del archivo (ej: <code>Receta_Juan_Perez.pdf</code>)</td>
+                            <td>✅ Sí</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha en que se registró</td>
+                            <td>✅ Sí</td>
+                        </tr>
+                        <tr>
+                            <td>Paciente al que corresponde</td>
+                            <td>✅ Sí</td>
+                        </tr>
+                        <tr>
+                            <td>El contenido real del PDF o Word</td>
+                            <td>❌ No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Es decir: el sistema funciona como una <strong>ficha de archivo</strong> o un <strong>recordatorio</strong>, no como una caja de almacenamiento.</p>
+
+            <h3>¿Por qué se diseñó así?</h3>
+            <p>Para que la clínica <strong>no tenga que pagar cada mes</strong> por servidor, base de datos con almacenamiento y equipo de desarrollo. Al guardar <strong>solo el nombre</strong>, el sistema:</p>
+            <ul>
+                <li>✅ No ocupa espacio en la nube.</li>
+                <li>✅ No necesita servidores de pago.</li>
+                <li>✅ No genera costos mensuales de mantenimiento.</li>
+                <li>✅ No depende de internet para recordarte qué archivo corresponde a cada paciente.</li>
+            </ul>
+
+            <h3>Entonces, ¿cómo hago para ver o editar un archivo?</h3>
+            <ol>
+                <li>Mirá el <strong>nombre del archivo</strong> que aparece en el historial del paciente.</li>
+                <li>Buscá ese mismo nombre en tu computadora (con el buscador de Windows o Mac).</li>
+                <li>Abrilo para <strong>visualizarlo</strong> y, si es Word, <strong>editarlo</strong>.</li>
+            </ol>
+
+            <div class="alert alert-warning">
+                <strong><i class='bx bx-error'></i> Consejo importante</strong>
+                Guardá siempre los archivos PDF y Word en una <strong>carpeta fija y conocida</strong> (por ejemplo: <code>C:\Clinica\Archivos_Pacientes</code>). Así los encontrás al instante buscando por el nombre que muestra el sistema.
+            </div>
+
+            <h3>Ejemplo práctico</h3>
+            <ol>
+                <li>Cargás en el historial de <em>María Gómez</em> el archivo <code>Estudio_Maria_Gomez.pdf</code>.</li>
+                <li>El sistema guarda: <strong>paciente María Gómez → archivo Estudio_Maria_Gomez.pdf → fecha</strong>.</li>
+                <li>Semanas después querés ver ese estudio: entrás al historial, ves el nombre, lo buscás en tu PC y lo abrís.</li>
+            </ol>
+
+            <div class="quote">
+                <strong>Resumen en una frase:</strong> el sistema guarda el nombre de tus archivos para que sepas cómo se llaman y dónde buscarlos; los archivos en sí quedan seguros en tu computadora, sin costos mensuales de servidor ni de base de datos.
+            </div>
+        </section>
+
+        <!-- 9: copias de seguridad -->
+        <section class="card" id="copias">
+            <h2><i class='bx bxs-cloud-download'></i> 9. Copias de seguridad semanales <span class="badge red">Obligatorio</span></h2>
+
+            <div class="alert alert-danger">
+                <strong><i class='bx bx-error-circle'></i> Regla de oro</strong>
+                Se debe hacer una <strong>copia de seguridad cada semana</strong>, en <strong>Google Drive</strong> y en un <strong>pendrive</strong>. Si no se guarda ahí, <strong>no existe la copia</strong>: el navegador puede borrar los datos al limpiar el historial, cambiar de equipo o formatear la PC.
+            </div>
+
+            <h3>¿Qué hay que guardar exactamente?</h3>
+            <div class="grid-2">
+                <div class="mini-card">
+                    <h4><i class='bx bx-data'></i> 1. El archivo JSON</h4>
+                    <p>Se genera con <strong>Configuración → JSON Export</strong>. Contiene todos los textos del sistema en un solo archivo <code>.json</code>.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bxs-spreadsheet'></i> 2. El archivo Excel</h4>
+                    <p>Se genera con <strong>Configuración → Exportar a Excel</strong>. Archivo <code>.xlsx</code> con pestañas de Pacientes, Profesionales, Turnos e Historial.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bx-folder'></i> 3. Las carpetas de PDF y Word</h4>
+                    <p>La carpeta de la PC donde se guardan los <strong>PDF</strong> (documentación general) y los <strong>Word</strong> (planes de tratamiento), ya que esos archivos <u>no están dentro del JSON ni del Excel</u>.</p>
+                </div>
+                <div class="mini-card">
+                    <h4><i class='bx bx-calendar-check'></i> 4. Frecuencia</h4>
+                    <p><strong>Una vez por semana</strong>, siempre el mismo día (por ejemplo, todos los lunes al finalizar la jornada).</p>
+                </div>
+            </div>
+
+            <h3>¿Por qué las tres cosas?</h3>
+            <ul>
+                <li>El <strong>JSON</strong> y el <strong>Excel</strong> respaldan los datos del sistema (pacientes, profesionales, turnos e historiales).</li>
+                <li>Las <strong>carpetas con PDF y Word</strong> respaldan los documentos originales, que viven en la PC y por lo tanto no los copia ningún export.</li>
+                <li>Si solo se guarda el JSON, se pierden los documentos; si solo se guardan las carpetas, se pierde el historial. <strong>Hay que guardar las tres cosas.</strong></li>
+            </ul>
+
+            <h3>Paso a paso de la copia semanal</h3>
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h4>Exportar el respaldo</h4>
+                    <p>Abrir el sistema → <strong>Configuración</strong> → clic en <strong>«Exportar a Excel»</strong> y después en <strong>«JSON Export»</strong>. Se descargan los dos archivos en la carpeta de Descargas.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h4>Armá la carpeta de la semana</h4>
+                    <p>Crear una carpeta con el nombre de la fecha, por ejemplo: <code>Respaldo_07-10-2026</code>, y adentro guardar: el <strong>.json</strong>, el <strong>.xlsx</strong> y copiar la <strong>carpeta de PDF y Word</strong> de la clínica.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h4>Subir a Google Drive</h4>
+                    <p>Ingresar a <strong>Google Drive</strong> (drive.google.com) con la cuenta de la clínica → <strong>Subir → Subir carpeta</strong> → elegir <code>Respaldo_07-10-2026</code>. Esperar a que termine de subir.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <h4>Copiar al pendrive</h4>
+                    <p>Conectar el pendrive y copiar la misma carpeta <code>Respaldo_07-10-2026</code> dentro del pendrive. No mover: <strong>copiar</strong>, para dejar también el original en la PC.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                    <h4>Verificar</h4>
+                    <p>Abrir la carpeta en Google Drive y en el pendrive para confirmar que el <strong>JSON</strong>, el <strong>Excel</strong> y las <strong>carpetas de PDF y Word</strong> están todos y que abren sin problemas.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-success">
+                <strong><i class='bx bx-check-circle'></i> Control semanal</strong>
+                Al finalizar la semana debe existir, como mínimo: <u>una copia en Google Drive</u> y <u>una copia en el pendrive</u>, cada una con el JSON, el Excel y las carpetas de PDF y Word.
+            </div>
+
+            <div class="alert alert-warning">
+                <strong><i class='bx bx-error'></i> Errores frecuentes</strong>
+                <ul style="margin-top:6px; margin-left:18px;">
+                    <li>Guardar solo el Excel y olvidarse de las carpetas de PDF y Word (se pierden los documentos originales).</li>
+                    <li>Subir a Google Drive pero no copiar al pendrive (o al revés): hacen falta las dos copias.</li>
+                    <li>Dejar de hacer la copia «porque hace una semana que no pasa nada»: la falla de un disco o la limpieza del navegador es de un segundo.</li>
+                </ul>
+            </div>
+
+            <h3>Restaurar una copia (¿se perdió todo?)</h3>
+            <ol>
+                <li>Buscar en Google Drive (o en el pendrive) la carpeta de respaldo más reciente.</li>
+                <li>Abrir el sistema → <strong>Configuración</strong>.</li>
+                <li>Usar <strong>«Importar desde Excel»</strong> o <strong>«JSON Import»</strong> seleccionando el archivo del respaldo.</li>
+                <li>Reponer en la PC la carpeta con los PDF y Word, y verificar que los nombres coinciden con los que muestra el sistema.</li>
+            </ol>
+        </section>
+
+        <!-- 10 -->
+        <section class="card" id="recomendaciones">
+            <h2><i class='bx bx-check-shield'></i> 10. Recomendaciones finales</h2>
+            <ul>
+                <li>✅ Usar el sistema con <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong> actualizados.</li>
+                <li>✅ Mantener los archivos PDF y Word en <strong>una sola carpeta fija</strong> de la PC.</li>
+                <li>✅ Hacer la <strong>copia semanal</strong> en Google Drive y pendrive (JSON + Excel + carpetas).</li>
+                <li>✅ Antes de importar un respaldo, exportar primero el actual.</li>
+                <li>❌ No borrar el historial de navegación del navegador: ahí están guardados los datos del sistema.</li>
+                <li>❌ No renombrar los archivos PDF o Word guardados en la PC, porque el sistema los identifica por su nombre.</li>
+                <li>❌ No compartir la PC con usuarios desconocidos sin cerrar la sesión o el navegador.</li>
+            </ul>
+            <div class="alert alert-info">
+                <strong><i class='bx bxl-whatsapp'></i> ¿Necesitás ayuda?</strong>
+                Soporte técnico: <a href="https://wa.me/5492665261144" target="_blank" rel="noopener">WhatsApp +54 9 266 526 1144</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="manual-footer">
+        <p>Manual de Uso — LograrES Gestión Clínica © 2026 SAS INTERDISCIPLINA | CUIT 30-71582093-1</p>
+        <p><a href="index.html">Volver al sistema</a></p>
+    </footer>
+
+</body>
+
+</html>
