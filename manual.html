@@ -421,19 +421,26 @@
             <ol>
                 <li>Ingresá a <strong>Pacientes</strong> y hacé clic en <strong>«Nuevo Paciente»</strong>.</li>
                 <li>Completá los datos: nombre, apellido, fecha de nacimiento, teléfono y email.</li>
-                <li>En <strong>Documentación General (PDF)</strong> podés elegir el archivo PDF desde tu PC: el sistema guarda <strong>solo el nombre</strong> del archivo como referencia (ver sección 8).</li>
+                <li>En <strong>Documentación General (PDF)</strong> podés elegir el archivo PDF desde tu PC: el sistema guarda el nombre y una copia del archivo para poder descargarlo desde la tabla (ver sección 8).</li>
                 <li>Hacé clic en <strong>Guardar</strong>. El paciente queda listo en la tabla.</li>
             </ol>
+            <div class="alert alert-success">
+                <strong><i class='bx bx-download'></i> Ícono 📄 en la tabla de pacientes</strong>
+                Si el paciente tiene documentación cargada, junto a su nombre aparece el ícono <strong>📄</strong>. Al hacer clic se <strong>descarga el PDF</strong> con su nombre original (se guarda en la carpeta de Descargas del navegador). Pasando el mouse sobre el ícono se ve el nombre del archivo.
+            </div>
             <div class="alert alert-warning">
-                <strong><i class='bx bx-error'></i> La tabla no abre el PDF</strong>
-                En la lista de pacientes <u>no hay ícono para ver ni descargar el PDF</u>: el sistema solo muestra los datos del paciente. El nombre del archivo cargado aparece únicamente al abrir el formulario de edición (ícono 📄 junto al nombre del archivo). El PDF en sí permanece en la carpeta de tu PC (ver sección 8).
+                <strong><i class='bx bx-error'></i> Esto NO es un sistema con base de datos: la descarga del PDF solo funciona en esta PC</strong>
+                LograrES es una <strong>aplicación web estática</strong> alojada con <strong>dominio gratuito en GitHub Pages</strong>: <u>no tiene servidor propio ni base de datos en la nube</u>. Todos los datos (pacientes, historiales, nombres y copias de los archivos) se guardan <strong>localmente en el navegador de esta computadora</strong>. Por eso el ícono <strong>📄</strong> descarga el PDF <strong>solo en la misma PC y el mismo navegador donde se cargó</strong>.<br><br>
+                • Si entrás desde <strong>otra PC, otro navegador o el celular sin cargar ningún respaldo</strong>: <strong>no se ve el paciente, ni el nombre del archivo, ni el ícono 📄</strong>, porque esos datos no existen en ese equipo.<br>
+                • Si en ese otro equipo importás el <strong>JSON</strong> (Configuración → JSON Import): <strong>ahí sí se van a ver los datos y el nombre del archivo</strong>, pero <u>el PDF en sí no se descarga</u>, porque la copia del documento no viaja en ese equipo: ese equipo no tiene los archivos.<br>
+                • Para tener el PDF de verdad en cualquier equipo, copialo con la <strong>copia de seguridad semanal</strong>: JSON + Excel + carpetas con los PDF y Word en Google Drive y pendrive (ver sección 9).
             </div>
             <h3>Editar, buscar o eliminar</h3>
             <ul>
                 <li><strong>Buscar:</strong> escribí en el buscador por nombre, apellido o teléfono.</li>
                 <li><strong>Editar:</strong> clic en <strong>Editar</strong> de la fila; ahí se ve el nombre del PDF cargado.</li>
                 <li><strong>Eliminar:</strong> clic en <strong>Eliminar</strong> (no se puede deshacer).</li>
-                <li><strong>Abrir el PDF:</strong> mirá el nombre en el formulario, buscá ese archivo en tu PC y abrilo directamente desde la carpeta donde lo guardaste.</li>
+                <li><strong>Abrir el PDF:</strong> clic en el ícono <strong>📄</strong> de la fila para descargarlo y abrirlo desde tu PC.</li>
             </ul>
         </section>
 
@@ -477,15 +484,22 @@
                 <li>Ingresá a <strong>Historial</strong> y creá un nuevo registro.</li>
                 <li>Seleccioná el paciente y el profesional.</li>
                 <li>Completá fecha, diagnóstico, tratamiento, observaciones y evolución.</li>
-                <li>Adjuntá el <strong>Plan de Tratamiento (Word)</strong> si corresponde: se guarda <strong>solo el nombre</strong> del archivo (ver sección 8).</li>
+                <li>Adjuntá el <strong>Plan de Tratamiento (Word)</strong> si corresponde: el sistema guarda el nombre y una copia del archivo para poder descargarlo desde la tabla (ver sección 8).</li>
                 <li>Guardá. El registro queda ordenado por fecha (se puede cambiar a «Más antigua primero» con el selector de orden).</li>
             </ol>
-            <h3>Buscar y ver el plan de tratamiento</h3>
+            <h3>Buscar y descargar el plan de tratamiento</h3>
             <ul>
                 <li><strong>Buscador:</strong> por ID, nombre o apellido del paciente.</li>
-                <li>En la tabla del historial <u>no hay ícono para abrir el Word</u>: solo se muestran los datos del registro.</li>
-                <li><strong>Nombre del Word:</strong> aparece al editar el registro (ícono 📄 junto al nombre del archivo). El archivo real sigue en la carpeta de tu PC (ver sección 8).</li>
+                <li><strong>Ícono 📄:</strong> si el registro tiene Word adjunto, en la columna <strong>Acciones</strong> aparece el ícono <strong>📄</strong>. Al hacer clic se <strong>descarga el archivo Word</strong> con su nombre original.</li>
+                <li>Si el registro no tiene ningún archivo adjunto, no se muestra ningún ícono.</li>
             </ul>
+            <div class="alert alert-warning">
+                <strong><i class='bx bx-error'></i> Esto NO es un sistema con base de datos: la descarga del Word solo funciona en esta PC</strong>
+                LograrES es una <strong>aplicación web estática</strong> alojada con <strong>dominio gratuito en GitHub Pages</strong>: <u>no tiene servidor propio ni base de datos en la nube</u>. Los historiales, los nombres y las copias de los archivos se guardan <strong>localmente en el navegador de esta computadora</strong>. Por eso el ícono <strong>📄</strong> descarga el Word <strong>solo en la misma PC y el mismo navegador donde se cargó</strong>.<br><br>
+                • Si entrás desde <strong>otra PC, otro navegador o el celular sin cargar ningún respaldo</strong>: <strong>no se ve el historial, ni el nombre del archivo, ni el ícono 📄</strong>, porque esos datos no existen en ese equipo.<br>
+                • Si en ese otro equipo importás el <strong>JSON</strong> (Configuración → JSON Import): <strong>ahí sí se van a ver los registros y el nombre del archivo Word</strong>, pero <u>el Word en sí no se descarga</u>, porque la copia del documento no viaja en ese equipo: ese equipo no tiene los archivos.<br>
+                • Para tener el Word de verdad en cualquier equipo, copialo con la <strong>copia de seguridad semanal</strong>: JSON + Excel + carpetas con los PDF y Word en Google Drive y pendrive (ver sección 9).
+            </div>
         </section>
 
         <!-- 7 -->
@@ -518,7 +532,7 @@
             <p><em>(Resumen oficial del archivo «Explicación de archivos PDF y Word.md»)</em></p>
 
             <h3>Respuesta breve</h3>
-            <p>Cuando cargás un archivo <strong>PDF</strong> o <strong>Word</strong> en el historial clínico (o en documentación general), el sistema <strong>no sube ni almacena el archivo en internet</strong>. Lo único que se guarda en el sistema es <strong>el nombre del archivo</strong>. El archivo en sí <strong>sigue guardado en tu PC</strong>, en la carpeta donde vos lo dejaste.</p>
+            <p>Cuando cargás un archivo <strong>PDF</strong> o <strong>Word</strong> en el historial clínico (o en documentación general), el sistema <strong>no sube ni almacena el archivo en internet</strong>. Lo que se guarda es <strong>el nombre del archivo</strong> y una <strong>copia local dentro del sistema</strong> (en la PC), precisamente para que el ícono <strong>📄</strong> de las tablas permita <strong>descargarlo</strong> con un clic. El archivo original <strong>sigue guardado en tu PC</strong>, en la carpeta donde vos lo dejaste.</p>
 
             <div class="table-wrap">
                 <table>
@@ -542,14 +556,18 @@
                             <td>✅ Sí</td>
                         </tr>
                         <tr>
-                            <td>El contenido real del PDF o Word</td>
+                            <td>Copia del PDF o Word (para descargarlo con el ícono 📄)</td>
+                            <td>✅ Sí, guardada en la PC / navegador</td>
+                        </tr>
+                        <tr>
+                            <td>Subida del archivo a internet o a un servidor</td>
                             <td>❌ No</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <p>Es decir: el sistema funciona como una <strong>ficha de archivo</strong> o un <strong>recordatorio</strong>, no como una caja de almacenamiento.</p>
+            <p>Es decir: el sistema funciona como una <strong>ficha de archivo</strong> que además permite <strong>descargar</strong> el documento, sin usar servidores de pago.</p>
 
             <h3>¿Por qué se diseñó así?</h3>
             <p>Para que la clínica <strong>no tenga que pagar cada mes</strong> por servidor, base de datos con almacenamiento y equipo de desarrollo. Al guardar <strong>solo el nombre</strong>, el sistema:</p>
@@ -562,8 +580,8 @@
 
             <h3>Entonces, ¿cómo hago para ver o editar un archivo?</h3>
             <ol>
-                <li>Mirá el <strong>nombre del archivo</strong> que aparece en el historial del paciente.</li>
-                <li>Buscá ese mismo nombre en tu computadora (con el buscador de Windows o Mac).</li>
+                <li><strong>Opción 1:</strong> hacé clic en el ícono <strong>📄</strong> de la tabla (Pacientes o Historial): el archivo se descarga y queda en tu PC.</li>
+                <li><strong>Opción 2:</strong> mirá el <strong>nombre del archivo</strong> en el sistema y buscalo con el buscador de Windows o Mac.</li>
                 <li>Abrilo para <strong>visualizarlo</strong> y, si es Word, <strong>editarlo</strong>.</li>
             </ol>
 
@@ -615,8 +633,8 @@
 
             <h3>¿Por qué las tres cosas?</h3>
             <ul>
-                <li>El <strong>JSON</strong> y el <strong>Excel</strong> respaldan los datos del sistema (pacientes, profesionales, turnos e historiales).</li>
-                <li>Las <strong>carpetas con PDF y Word</strong> respaldan los documentos originales, que viven en la PC y por lo tanto no los copia ningún export.</li>
+                <li>El <strong>JSON</strong> respaldan los datos del sistema (pacientes, profesionales, turnos e historiales) <strong>junto con los archivos adjuntos</strong> que se descargan con el ícono 📄; el <strong>Excel</strong> guarda los textos y los nombres de esos archivos.</li>
+                <li>Las <strong>carpetas con PDF y Word</strong> respaldan los documentos originales de la PC.</li>
                 <li>Si solo se guarda el JSON, se pierden los documentos; si solo se guardan las carpetas, se pierde el historial. <strong>Hay que guardar las tres cosas.</strong></li>
             </ul>
 
